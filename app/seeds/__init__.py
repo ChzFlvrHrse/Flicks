@@ -12,7 +12,7 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
-    seed_categories()
+    # seed_categories()
 
     if environment == 'production':
         # Before seeding, truncate all tables prefixed with schema name
@@ -27,4 +27,4 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
-    undo_categories()
+    # undo_categories()

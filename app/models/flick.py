@@ -6,8 +6,8 @@ from datetime import datetime
 class Flick(db.Model):
     __tablename__ = 'flicks'
 
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+    # if environment == "production":
+    #     __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.VARCHAR(255), nullable=False)

@@ -10,11 +10,11 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.VARCHAR(75), nullable=False)
 
-    flicks = db.relationship("Flick", backref='category', cascade='all, delete-oprhan')
+    # flicks = db.relationship("Flick", backref='category', cascade='all, delete-oprhan')
 
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
-            'flicks': [flick.to_dict() for flick in self.flicks]
+            # 'flicks': [flick.to_dict() for flick in self.flicks]
         }
