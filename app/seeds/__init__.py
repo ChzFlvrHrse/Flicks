@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from app.models.db import db, environment, SCHEMA
 from .users import seed_users, undo_users
 from .category import seed_categories, undo_categories
+from .flick import seed_flicks, undo_flicks
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -12,7 +13,8 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
-    # seed_categories()
+    seed_categories()
+    seed_flicks()
 
     if environment == 'production':
         # Before seeding, truncate all tables prefixed with schema name
@@ -27,4 +29,5 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
-    # undo_categories()
+    undo_categories()
+    undo_flicks()

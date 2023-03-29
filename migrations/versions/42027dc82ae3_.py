@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f9ed8d77b458
+Revision ID: 42027dc82ae3
 Revises: 
-Create Date: 2023-03-28 17:29:07.910184
+Create Date: 2023-03-29 16:29:55.754024
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f9ed8d77b458'
+revision = '42027dc82ae3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,9 +35,12 @@ def upgrade():
     )
     op.create_table('flicks',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.VARCHAR(length=255), nullable=False),
-    sa.Column('flickImg', sa.String(), nullable=False),
-    sa.Column('preview', sa.String(), nullable=False),
+    sa.Column('title', sa.VARCHAR(length=255), nullable=False),
+    sa.Column('img', sa.String(), nullable=False),
+    sa.Column('runtime', sa.Integer(), nullable=False),
+    sa.Column('synopsis', sa.String(), nullable=False),
+    sa.Column('year', sa.Integer(), nullable=False),
+    sa.Column('vtype', sa.VARCHAR(length=50), nullable=False),
     sa.Column('categoryId', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
