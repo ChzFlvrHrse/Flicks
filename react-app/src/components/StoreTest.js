@@ -1,23 +1,23 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategoriesThunk, getOneCategoryThunk } from '../store/category'
+import { getAllFlicksThunk, getOneFlickThunk, searchFlickThunk } from '../store/flick'
 
 export default function Category() {
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getAllCategoriesThunk())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getAllFlicksThunk())
+    // }, [dispatch])
 
     useEffect(() => {
-        dispatch(getOneCategoryThunk(1))
+        dispatch(getOneFlickThunk('zebra'))
     }, [dispatch])
 
     return (
         <div>
             <div>
-                Hello
+                Test
             </div>
         </div>
     )

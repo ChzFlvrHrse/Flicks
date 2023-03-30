@@ -16,10 +16,14 @@ def get_all_flicks():
 # @login_required
 def get_flick(title):
     flick = Flick.query.filter_by(title=title).first()
+    if flick == None:
+        return {'searched': 'Title does not exist'}
     return flick.to_dict()
 
 @flick_routes.route("/<string:title>/search")
 def search_flick(title):
     title_cased = title.title()
     flick_search = Flick.query.filter(Flick.title.startswith(title_cased)).all()
+    if len(flick_search) == 0:
+        return {'searched': 'Title does not exist'}
     return {'searched': [flick.to_dict() for flick in flick_search]}
