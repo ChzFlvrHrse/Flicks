@@ -19,7 +19,7 @@
 /* Arrows */
 .slick-prev,
 .slick-next {
-    font-size: 20px;
+    /* font-size: 20px; */
     line-height: 0;
 
     position: absolute;
@@ -27,17 +27,19 @@
 
     display: block;
 
-    width: 40px;
-    height: 40px;
+    /* moving the arrows right and left */
+    width: 10px;
+    height: 110px;
     padding: 50px;
+
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
     transform: translate(0, -50%);
 
     cursor: pointer;
 
-    color: transparent;
-    border: none;
+    background-color: white;
+    /* border: 5px solid black; */
     outline: none;
     background: transparent;
     z-index: 1;
@@ -67,18 +69,20 @@
 .slick-prev:before,
 .slick-next:before {
     /* font-family: 'slick'; */
-    font-size: 40px;
+    /* controls the actual arrow */
+    font-size: 90px;
     line-height: 1;
+    /* background-color: white; */
 
-    opacity: .75;
-    color: gray;
-
+    opacity: 0.75;
+    color: black;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .slick-prev {
-    left: -25px;
+    /*  controls the left arrow  */
+    left: -45px;
 }
 
 [dir='rtl'] .slick-prev {
@@ -95,21 +99,28 @@
 }
 
 .slick-next {
-    right: -25px;
+    right: 25px;
+    /* background-color: white; */
+    
 }
 
 [dir='rtl'] .slick-next {
-    right: auto;
     left: -25px;
+    
 }
 
 .slick-next:before {
     content: '→';
+    color: white;
 }
 
 [dir='rtl'] .slick-next:before {
     content: '←';
 }
+
+
+
+
 
 /* Dots */
 .slick-dotted.slick-slider {

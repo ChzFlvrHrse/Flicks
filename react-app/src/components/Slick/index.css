@@ -1,0 +1,19 @@
+.slider-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+
+.content {
+    position: relative;
+    height: 225px;
+    background: #777;
+
+
+}
+
+.content:hover {
+
+    position: absolute;
+    
+}
