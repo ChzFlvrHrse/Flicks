@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Nav from '../Nav/Nav';
 import { getAllFlicksThunk, getOneFlickThunk, searchFlickThunk } from '../../store/flick'
 import { getAllCategoriesThunk, getOneCategoryThunk } from '../../store/category';
+import SliderComponent from '../Slick/slider';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export default function Home() {
                 <Nav />
             </div>
             <div>
-                
+                <SliderComponent allCategories={categories} />
             </div>
         </div>
     )
