@@ -1,0 +1,41 @@
+#nav {
+    display: flex;
+    /* justify-content: space-between; */
+    column-gap: 50px;
+    align-items: center;
+    background-color: #ffffff;
+    position: sticky;
+    z-index: 5;
+    height: 4rem;
+    width: 100%;
+    background-color: #141414;
+}
+
+#left-nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+#home {
+    text-decoration: none;
+    margin: 1.25rem 2.5rem 1.25rem 2.5rem;
+}
+
+.logo {
+    height: 20%;
+    width: 20%;
+}
+
+.links {
+    color: white;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    /* width: 10%; */
+    font-size: 1vw;
+    font-weight: 500;
+}
+
+.links:hover {
+    opacity: .8;
+}
