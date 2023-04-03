@@ -22,13 +22,55 @@ export default function SliderComponent({ allCategories }) {
 
     const tester = allCategories.map((category) => {
 
-        let {flicks, name} = category
-        let maxFlicks = flicks.slice(0,15)
-        
+        let { flicks, name } = category
+        let maxFlicks = flicks.slice(0, 15)
+
+        if(maxFlicks.length < 14) return 
+
+        let showComponent = maxFlicks.map((flick) => {
+            let { img, title } = flick
+
+            return (
+                <div>
+                    <p>{title}</p>
+                    <img src={img}></img>
+                </div>
+            )
+        })
+
+        return (
+            <>
+                <div>
+                    <h2>{name}</h2>
+                    <Slider {...settings}>
+                        <div className="content">
+                            {showComponent[0]}
+                        </div>
+                        <div className="content">
+                            {showComponent[1]}
+                        </div>
+                        <div className="content">
+                            {showComponent[2]}
+                        </div>
+                        <div className="content">
+                            {showComponent[3]}
+                        </div>
+                        <div className="content">
+                            {showComponent[4]}
+                        </div>
+                        <div className="content">
+                            {showComponent[5]}
+                        </div>
+                    </Slider>
+
+                </div>
+            </>
+        )
+
 
 
     })
-    
+
 
 
     return (

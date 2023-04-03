@@ -13,9 +13,7 @@ export default function Home() {
         dispatch(getAllCategoriesThunk())
     }, [dispatch])
 
-    const categories = useSelector(state => state.category)
-    const catKeys = Object.keys(categories)
-    console.log(catKeys)
+    const categories = useSelector(state => Object.values(state.category))
 
     return (
         <div>
