@@ -9,16 +9,16 @@ import SliderComponent from './Slick/slider';
 export default function Category() {
   const dispatch = useDispatch()
 
-  // const allCagegories = useSelector(state => Object.values(state.Category))
-  // console.log(allCagegories)
+  const allCategories = useSelector(state => Object.values(state.category))
   useEffect(() => {
     dispatch(getAllCategoriesThunk())
   }, [dispatch])
 
 
+
   return (
     <div>
-      <SliderComponent />
+      <SliderComponent allCategories={allCategories} />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import "./slick-theme.css"
 import "./slick.css"
 import "./index.css"
 
-export default function SliderComponent() {
+export default function SliderComponent({ allCategories }) {
     var settings = {
         // className: "center",
         // centerMode: true,
@@ -19,9 +19,21 @@ export default function SliderComponent() {
         prevArrow: <SamplePrevArrow />
     };
 
+
+    const tester = allCategories.map((category) => {
+
+        let {flicks, name} = category
+        let maxFlicks = flicks.slice(0,15)
+        
+
+
+    })
+    
+
+
     return (
         <div className='slider-container'>
-            <h2>Trending Now</h2>
+            {tester}
             <Slider {...settings}>
                 <div className="content">
                     <h3>1</h3>
