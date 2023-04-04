@@ -8,12 +8,18 @@
     position: relative;
     height: 225px;
     background: #777;
-
-
+    color: white
 }
 
 .content:hover {
 
     position: absolute;
-    
+
+}
+
+.cat-title {
+    color: white;
+    font-size: 1.4vw;
+    margin-left: 2.5rem;
+    font-weight: 500;
 }

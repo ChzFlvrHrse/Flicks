@@ -101,12 +101,12 @@
 .slick-next {
     right: 25px;
     /* background-color: white; */
-    
+
 }
 
 [dir='rtl'] .slick-next {
     left: -25px;
-    
+
 }
 
 .slick-next:before {
@@ -199,7 +199,7 @@
     text-align: center;
 
     opacity: .25;
-    color: black;
+    color: rgb(213, 208, 208);
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -207,5 +207,5 @@
 
 .slick-dots li.slick-active button:before {
     opacity: .75;
-    color: black;
+    color: white;
 }
