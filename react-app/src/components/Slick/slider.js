@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import { SampleNextArrow, SamplePrevArrow } from './arrowFunctions';
+import { getOneFlickThunk } from "../../store/flick";
 import "./slick-theme.css"
 import "./slick.css"
 import "./index.css"
 
 export default function SliderComponent({ allCategories }) {
+    const dispatch = useDispatch();
+
+
     var settings = {
         // className: "center",
         // centerMode: true,
@@ -31,8 +36,6 @@ export default function SliderComponent({ allCategories }) {
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />
     };
-
-    let randArr = []
 
     let topTen = () => {
         let count = 0;
@@ -88,12 +91,10 @@ export default function SliderComponent({ allCategories }) {
 
         return (
             <>
-                <div>
-                    <h2 className="cat-title">{name}</h2>
-                    <Slider {...settings}>
-                        {showComponent}
-                    </Slider>
-                </div>
+                <h2 className="cat-title">{name}</h2>
+                <Slider {...settings}>
+                    {showComponent}
+                </Slider>
             </>
         )
 
@@ -103,9 +104,6 @@ export default function SliderComponent({ allCategories }) {
 
     return (
         <div className='slider-container'>
-            <div>
-
-            </div>
             {topTen()}
             {tester}
         </div>

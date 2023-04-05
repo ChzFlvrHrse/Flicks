@@ -3,7 +3,6 @@
     width: 100%;
 }
 
-
 .content {
     position: relative;
     height: 225px;
@@ -12,9 +11,8 @@
 }
 
 .content:hover {
-
-    position: absolute;
-
+    transform: scale(1.1);
+    transition: all .5s ease-out;
 }
 
 .cat-title {

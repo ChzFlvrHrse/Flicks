@@ -2,7 +2,7 @@ from app.models import db, Flick
 import json
 import requests
 
-keys_dict = {'Anime': [7424, 1], 'Drama': [5763, 2], 'Indy': [7077, 3],
+keys_dict = {'Anime': [7424, 1], 'Drama': [5763, 2], 'Independent': [7077, 3],
             'Thriller': [89811, 4], 'Horror': [8711, 5], 'Kids & Family': [783, 6],
             'TV': [72404, 7], 'Romantic': [3830, 8], 'Comedies': [9736, 9],
             'Music & Musicals': [52852, 10], 'Sci-Fi & Fantasy': [1492, 11],
@@ -12,7 +12,7 @@ keys_dict = {'Anime': [7424, 1], 'Drama': [5763, 2], 'Indy': [7077, 3],
             'Sports': [4370, 18]}
 
 
-def seedFlicks(genrelist_id, category_id):
+def seedFlicks(genrelist_id, key_name, category_id):
 
     url = "https://unogsng.p.rapidapi.com/search"
 
@@ -30,13 +30,13 @@ def seedFlicks(genrelist_id, category_id):
     json_data = json.loads(response.text)
 
     for data in json_data['results']:
-        db.session.add(Flick(title=data['title'], img=data['img'], runtime=data['runtime'], synopsis=data['synopsis'], year=data['year'], vtype=data['vtype'], categoryId=category_id))
+        db.session.add(Flick(title=data['title'], img=data['img'], runtime=data['runtime'], synopsis=data['synopsis'], year=data['year'], vtype=data['vtype'], categoryName=key_name, categoryId=category_id))
 
     return
 
 def seed_flicks():
-    for keys in keys_dict:
-        seedFlicks(keys_dict[keys][0], keys_dict[keys][1])
+    for key in keys_dict:
+        seedFlicks(keys_dict[key][0], key, keys_dict[key][1])
 
     db.session.commit()
 

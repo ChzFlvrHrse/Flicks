@@ -1,4 +1,3 @@
-from distutils.dep_util import newer
 from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
 from .auth_routes import validation_errors_to_error_messages
@@ -15,12 +14,13 @@ def get_all_flicks():
 @flick_routes.route("/<string:title>", methods=["GET"])
 # @login_required
 def get_flick(title):
-    flick = Flick.query.filter_by(title=title).first()
-    if flick == None:
-        return {'searched': 'Title does not exist'}
-    return flick.to_dict()
+    flicks = Flick.query.filter_by(title=title).all()
+    if flicks == None:
+        return {'flick': 'Title does not exist'}
+    return {'flick': [flick.to_dict() for flick in flicks]}
 
 @flick_routes.route("/<string:title>/search")
+# @login_required
 def search_flick(title):
     title_cased = title.title()
     flick_search = Flick.query.filter(Flick.title.startswith(title_cased)).all()

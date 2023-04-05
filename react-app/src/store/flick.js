@@ -62,7 +62,12 @@ const flickReducer = (state = initialState, action) => {
         }
         case GET_FLICK: {
             const newState = {};
-            newState[action.flick.id] = action.flick
+            if (action.flick.flick === 'Title does not exist') {
+                return newState[action.flick] = action.flick
+            }
+            action.flick.flick.forEach((flick, i) => {
+                newState[flick.id] = flick
+            })
             return newState
         }
         case SEARCH_FLICK: {
