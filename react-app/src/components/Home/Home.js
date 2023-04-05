@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import Nav from '../Nav/Nav';
 import { getAllFlicksThunk, getOneFlickThunk, searchFlickThunk } from '../../store/flick'
 import { getAllCategoriesThunk, getOneCategoryThunk } from '../../store/category';
 import SliderComponent from '../Slick/slider';
@@ -26,7 +25,6 @@ export default function Home() {
         <div className='home-container'>
             <div className='banner'>
                 <div className='banner-contents'>
-                    {/* <h1 className='banner-title'>The Dark Knight</h1> */}
                     <img className='banner-title' src={dkt}/>
                     <div className='synopsis'>
                         {banner[0]?.synopsis}
