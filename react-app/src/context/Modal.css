@@ -1,0 +1,41 @@
+#modal {
+  z-index: 6;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: .7;
+}
+#modal-background2 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: .4;
+}
+
+#modal-content {
+  top: 2rem;
+  position: absolute;
+  background-color: #181818;
+  display: grid;
+  flex-direction: column;
+  width: 65%;
+  height: 100%;
+  border-radius: .5rem;
+}

@@ -5,13 +5,16 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import reportWebVitals from './reportWebVitals';
+import { ModalProvider } from "./context/Modal";
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ModalProvider>
+        <App />
+      </ModalProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

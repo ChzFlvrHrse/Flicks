@@ -6,14 +6,6 @@ import { getAllCategoriesThunk, getOneCategoryThunk } from '../../store/category
 import styled from "styled-components";
 import Search from '../Search/Search';
 import "./Nav.css"
-// import "./styles.css";
-
-const Title = styled.p`
-  font-size: 2rem;
-  color: #eeeeee;
-  letter-spacing: 0.15em;
-  line-height: 2em;
-`;
 
 export default function Nav() {
     const [scrollTop, setScrollTop] = useState(true);
@@ -54,9 +46,6 @@ export default function Nav() {
                 </NavLink>
             </div>
             <div id='right-nav'>
-                {/* <div className='search'>
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div> */}
                 <div className='search-bar'>
                     <Search />
                 </div>

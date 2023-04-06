@@ -8,8 +8,8 @@
     z-index: 5;
     height: 4rem;
     width: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0), rgba(255, 255, 255, 0));
-    transition: all 0.5s ease-out;
+    background: linear-gradient(to bottom, #090909, rgba(255, 255, 255, 0));
+    transition: all 0.75s ease-in-out;
 }
 
 .nav-not-top {
@@ -22,8 +22,8 @@
     z-index: 5;
     height: 4rem;
     width: 100%;
-    background-color: #141414;
-    transition: all 0.5s ease-out;
+    background-color: #090909;
+    transition: all 0.5s ease-in-out;
 }
 
 #left-nav {
@@ -39,39 +39,36 @@
     margin: 1.25rem -50rem 1.25rem 2.5rem;
 }
 
+.home:hover {
+    cursor: default;
+}
+
 .logo {
     height: 15%;
     width: 15%;
+}
+
+.logo:hover {
+    cursor: pointer;
 }
 
 .links {
     color: white;
     text-decoration: none;
     margin-left: 1.5rem;
-    /* margin-right: 7rem; */
-    /* width: 10%; */
     font-size: 1vw;
     font-weight: 500;
+    transition: all 0.4s ease-out;
 }
 
 .links:hover {
-    opacity: .8;
-    transition: all 0.25s ease-out;
+    opacity: .60;
+    transition: all 0.4s ease-out;
 }
 
 #right-nav {
     margin-right: 8rem;
 }
-
-/* .search {
-    font-size: 1.3rem;
-}
-
-.search:hover {
-    cursor: pointer;
-    opacity: .8;
-    transition: all 0.25s ease-out;
-} */
 
 .search-bar {
     display: flex;
@@ -80,7 +77,6 @@
     align-items: center;
     font-family: sans-serif;
     text-align: center;
-    /* background: #222831; */
     height: 100vh;
     width: 30vh;
 }

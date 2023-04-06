@@ -71,7 +71,7 @@ export default function SliderComponent({ allCategories }) {
         )
     }
 
-    const tester = allCategories.map((category) => {
+    const flicks = allCategories.map((category) => {
 
         let { flicks, name } = category
         let maxFlicks = flicks.slice(0, 15)
@@ -105,7 +105,7 @@ export default function SliderComponent({ allCategories }) {
     return (
         <div className='slider-container'>
             {topTen()}
-            {tester}
+            {flicks}
         </div>
     );
 }
