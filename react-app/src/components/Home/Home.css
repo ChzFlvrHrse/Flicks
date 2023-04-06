@@ -3,7 +3,7 @@
     background-size: cover;
     background-position: center center;
     object-fit: contain;
-    height: 30rem;
+    height: 35rem;
 }
 
 .banner-contents {
@@ -24,7 +24,6 @@
     font-size: 1.2vw;
     max-width: 25rem;
     height: 100px;
-    /* width: 40rem; */
     font-weight: 400;
     text-shadow: 2px 2px 4px rgba(0,0,0,.45);
 }
@@ -61,10 +60,11 @@
 }
 
 .banner-fade-bottom {
+    margin-top: 5rem;
     height: 9.5rem;
     background-image: linear-gradient(180deg, transparent,  rgba(20, 20, 20, .65),  rgb(20, 20, 20));
 }
 
 .slider {
-    margin-top: 8%;
+    /* margin-top:8%; */
 }

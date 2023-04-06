@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
+import Info from "../Info/Info";
+import { Modal } from "../../context/Modal";
 import { SampleNextArrow, SamplePrevArrow } from './arrowFunctions';
 import { getOneFlickThunk } from "../../store/flick";
 import "./slick-theme.css"

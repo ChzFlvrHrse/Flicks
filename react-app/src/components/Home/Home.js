@@ -45,7 +45,7 @@ export default function Home() {
             <div>
                 {showModalBanner && (
                     <Modal onClose={() => setShowModalBanner(false)}>
-                        <Info info={banner[0]} genres={genres(banner)}/>
+                        <Info info={banner} genres={genres(banner)}/>
                     </Modal>
                 )}
             </div>
