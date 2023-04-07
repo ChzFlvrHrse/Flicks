@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import Info from "../Info/Info";
-import { Modal } from "../../context/Modal";
+import { Modal2 } from "../../context/Modal2";
 import { SampleNextArrow, SamplePrevArrow } from './arrowFunctions';
-import { getOneFlickThunk } from "../../store/flick";
 import "./slick-theme.css"
 import "./slick.css"
 import "./index.css"
 
 export default function SliderComponent({ allCategories }) {
-    const dispatch = useDispatch();
-
+    const [showModal, setShowModal] = useState(false);
+    const [flickKey, setFlickKey] = useState()
 
     var settings = {
         // className: "center",
@@ -62,10 +61,20 @@ export default function SliderComponent({ allCategories }) {
                 <h2 className="cat-title">Top 10 Movies in the U.S. Today</h2>
                 <Slider {...topSettings}>
                     {topTenArr.map((top, i) => (
-                        <div key={i} className="content">
-                            <h3>{i + 1}</h3>
-                            <p>{top?.title}</p>
-                            <img src={top?.img} />
+                        <div>
+                            <div onClick={() => {
+                                setShowModal(true)
+                                setFlickKey(i)
+                            }} key={i} className="content">
+                                <h3>{i + 1}</h3>
+                                <p>{top?.title}</p>
+                                <img src={top?.img} />
+                            </div>
+                            {showModal && flickKey === i && (
+                                <Modal2 onClose={() => setShowModal(false)}>
+                                    <Info title={top?.title} setShowModal={setShowModal} />
+                                </Modal2>
+                            )}
                         </div>
                     ))}
                 </Slider>

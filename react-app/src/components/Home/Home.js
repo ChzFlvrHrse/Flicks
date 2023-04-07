@@ -18,22 +18,19 @@ export default function Home() {
         dispatch(getAllCategoriesThunk())
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getOneFlickThunk('The Dark Knight'))
-    }, [dispatch])
-
     const categories = useSelector(state => Object.values(state.category))
-    const banner = useSelector(state => Object.values(state.flick))
-
-    const genres = (banner) => banner.map(ban => ban.categoryName)
 
     return (
         <div className='home-container'>
             <div className='banner'>
                 <div className='banner-contents'>
-                    <img className='banner-title' src={DKT} />
+                    <img className='banner-title' src={DKT}/>
                     <div className='synopsis'>
-                        {banner[0]?.synopsis}
+                        <p>
+                            As Batman, Lt. Gordon and the district attorney continue
+                            to dismantle Gotham's criminal underground, a new villain
+                            threatens to undo their good work.
+                        </p>
                         <div className='banner-buttons'>
                             <button className='banner-button play'><i class="fa-solid fa-play"></i> Play</button>
                             <button onClick={() => setShowModalBanner(true)} className='banner-button info'><i class="fa-solid fa-circle-info"></i> More Info</button>
@@ -45,7 +42,7 @@ export default function Home() {
             <div>
                 {showModalBanner && (
                     <Modal onClose={() => setShowModalBanner(false)}>
-                        <Info info={banner} genres={genres(banner)}/>
+                        <Info title={'The Dark Knight'} setShowModal={setShowModalBanner} />
                     </Modal>
                 )}
             </div>

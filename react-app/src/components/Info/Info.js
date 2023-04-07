@@ -4,32 +4,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { Tooltip } from '@mui/material';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import HdTwoToneIcon from '@mui/icons-material/HdTwoTone';
+import { getOneFlickThunk } from '../../store/flick';
 import "./Info.css"
 
-export default function Info({ info, genres }) {
-    const first = info[0]
+export default function Info({ title, setShowModal }) {
+    const dispatch = useDispatch();
 
-    function secondsToHm(d) {
-        d = Number(d);
-        const h = Math.floor(d / 3600);
-        const m = Math.floor(d % 3600 / 60);
+    function secondsToHm(num) {
+        num = Number(num);
+        const h = Math.floor(num / 3600);
+        const m = Math.floor(num % 3600 / 60);
 
         return h + "h " + m + "m"
     }
 
+    useEffect(() => {
+        dispatch(getOneFlickThunk(title))
+    }, [dispatch])
+
+    const flicks = useSelector(state => Object.values(state.flick));
+    const genres = (flicks) => flicks.map(flick => flick.categoryName);
+    const genreLen = genres(flicks).length
+
     return (
-        <div className='info-modal'>
+        <div className='info-modal' style={{backgroundImage: `url(${flicks[0]?.img})`}}>
+            <img src={flicks[0]?.img} className='img'/>
             <div className='info-contents'>
                 <div className='info-title'>
-                    {first.title}
+                    {flicks[0]?.title}
                 </div>
                 <div className='general-info'>
                     <div className='tech-details'>
                         <div className='detail'>
-                            {first.year}
+                            {flicks[0]?.year}
                         </div>
                         <div className='detail'>
-                            {secondsToHm(first.runtime)}
+                            {flicks[0]?.runtime === 0 ? secondsToHm(flicks[0]?.runtime) : <></>}
                         </div>
                         <div className='detail'>
                             <HdTwoToneIcon />
@@ -42,14 +52,14 @@ export default function Info({ info, genres }) {
                     </div>
                     <div className='sub-modal'>
                         <div className='modal-synopsis'>
-                            {first.synopsis}
+                            {flicks[0]?.synopsis}
                         </div>
                         <div className='genres'>
                             {'Genres:'}
                             <div className='all-genres'>
-                                {genres.map((genre, i) => (
+                                {genres(flicks).map((genre, i) => (
                                     <Link key={i} className='genre'>
-                                        {i === genres.length - 1 ? genre : `${genre}, `}
+                                        {i === genreLen - 1 ? genre : `${genre}, `}
                                     </Link>
                                 ))}
                             </div>

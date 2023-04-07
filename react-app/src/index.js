@@ -6,6 +6,7 @@ import App from './App';
 import configureStore from './store';
 import reportWebVitals from './reportWebVitals';
 import { ModalProvider } from "./context/Modal";
+import { ModalProvider2 } from './context/Modal2';
 
 const store = configureStore();
 
@@ -13,7 +14,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ModalProvider>
-        <App />
+        <ModalProvider2>
+          <App />
+        </ModalProvider2>
       </ModalProvider>
     </Provider>
   </React.StrictMode>,

@@ -1,10 +1,10 @@
 .info-modal {
-    background-image: url('../Images/joker-jail.jpg');
     background-size: cover;
     background-position: center center;
     object-fit: contain;
     height: 30rem;
     border-radius: .5rem;
+    
 }
 
 .info-contents {
@@ -80,6 +80,6 @@
 }
 
 .info-fade-bottom {
-    height: 10rem;
+    height: 9.5rem;
     background-image: linear-gradient(180deg, transparent,  rgba(20, 20, 20, .65),  #181818);
 }
