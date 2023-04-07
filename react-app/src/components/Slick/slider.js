@@ -11,6 +11,7 @@ import "./index.css"
 
 export default function SliderComponent({ allCategories }) {
     const [showModal, setShowModal] = useState(false);
+    const [topTenKey, setTopTenKey] = useState();
     const [flickKey, setFlickKey] = useState();
 
     var settings = {
@@ -26,16 +27,16 @@ export default function SliderComponent({ allCategories }) {
         prevArrow: <SamplePrevArrow />
     };
 
-    let topTen = () => {
+    let topIndex = 0;
+    const topTen = () => {
         let count = 0;
-        let topTenObj = {flicks: '', id: 0, name: 'Top 15 Movies in the U.S. Today'};
         let topTenArr = [];
         let randCatIndex;
         let randCat;
         let randFlickIndex;
         let randFlick;
 
-        while (count < 15) {
+        while (count < 10) {
             randCatIndex = Math.floor(Math.random() * (allCategories.length - 1))
             randCat = allCategories[randCatIndex];
             randFlickIndex = Math.floor(Math.random() * (randCat?.flicks.length - 1));
@@ -45,15 +46,35 @@ export default function SliderComponent({ allCategories }) {
             count++;
         }
 
-        topTenObj['flicks'] = topTenArr;
-        return topTenObj;
+        return (
+            <div>
+                <h2 className="cat-title">Top 10 Movies in the U.S. Today</h2>
+                <Slider {...settings}>
+                    {topTenArr.map((top, i) => (
+                        <div>
+                            <div onClick={() => {
+                                setShowModal(true)
+                                setTopTenKey(`top${i}`)
+                            }} key={i} className="content">
+                                <h3>{i + 1}</h3>
+                                <img src={top?.img} />
+                            </div>
+                            {showModal && topTenKey === `top${i}` && (
+                                <Modal2 onClose={() => setShowModal(false)}>
+                                    <Info title={top?.title} setShowModal={setShowModal} />
+                                </Modal2>
+                            )}
+                        </div>
+                    ))}
+                </Slider>
+            </div>
+        )
     }
 
 
-    let allFlicks = [topTen(), ...allCategories]
 
     let index = 0;
-    const flicks = allFlicks.map((category) => {
+    const flicks = allCategories.map((category) => {
 
         let { flicks, name } = category
         let maxFlicks = flicks.slice(0, 15)
@@ -70,8 +91,6 @@ export default function SliderComponent({ allCategories }) {
                         setShowModal(true)
                         setFlickKey(keyVal)
                     }} key={keyVal} className="content">
-                        {index < 10 ? <h3>{i + 1}</h3> : <></>}
-                        {/* <p>{title}</p> */}
                         <img src={img} />
                     </div>
                     {showModal && flickKey === keyVal && (
@@ -98,6 +117,7 @@ export default function SliderComponent({ allCategories }) {
 
     return (
         <div className='slider-container'>
+            {topTen()}
             {flicks}
         </div>
     );
