@@ -48,7 +48,7 @@ export const SearchInput = styled.input`
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  
+  background-color: #141414;
   display: ${(props) => (props.showSearchInput ? "block" : "none")};
 `;
 

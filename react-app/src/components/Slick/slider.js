@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import Info from "../Info/Info";
 import { Modal2 } from "../../context/Modal2";
+import { Modal } from "../../context/Modal"
 import { SampleNextArrow, SamplePrevArrow } from './arrowFunctions';
 import "./slick-theme.css"
 import "./slick.css"
@@ -10,7 +11,8 @@ import "./index.css"
 
 export default function SliderComponent({ allCategories }) {
     const [showModal, setShowModal] = useState(false);
-    const [flickKey, setFlickKey] = useState()
+    const [flickKey, setFlickKey] = useState();
+    const [animKey, setAnimeKey] = useState();
 
     var settings = {
         // className: "center",
@@ -40,6 +42,7 @@ export default function SliderComponent({ allCategories }) {
 
     let topTen = () => {
         let count = 0;
+        let topTenObj = {flicks: '', id: 0, name: 'Top 10 Movies in the U.S. Today'};
         let topTenArr = [];
         let randCatIndex;
         let randCat;
@@ -56,46 +59,41 @@ export default function SliderComponent({ allCategories }) {
             count++;
         }
 
-        return (
-            <div>
-                <h2 className="cat-title">Top 10 Movies in the U.S. Today</h2>
-                <Slider {...topSettings}>
-                    {topTenArr.map((top, i) => (
-                        <div>
-                            <div onClick={() => {
-                                setShowModal(true)
-                                setFlickKey(i)
-                            }} key={i} className="content">
-                                <h3>{i + 1}</h3>
-                                <p>{top?.title}</p>
-                                <img src={top?.img} />
-                            </div>
-                            {showModal && flickKey === i && (
-                                <Modal2 onClose={() => setShowModal(false)}>
-                                    <Info title={top?.title} setShowModal={setShowModal} />
-                                </Modal2>
-                            )}
-                        </div>
-                    ))}
-                </Slider>
-            </div>
-        )
+        topTenObj['flicks'] = topTenArr;
+        return topTenObj;
     }
 
-    const flicks = allCategories.map((category) => {
+
+    let allFlicks = [topTen(), ...allCategories]
+
+    let index = 0;
+    const flicks = allFlicks.map((category) => {
 
         let { flicks, name } = category
         let maxFlicks = flicks.slice(0, 15)
+        console.log(maxFlicks)
 
-        if (maxFlicks.length < 14) return
+        if (maxFlicks.length < 10) return
 
         let showComponent = maxFlicks.map((flick, i) => {
-            let { img, title } = flick
+            let { img, title } = flick;
+            let keyVal = index++;
 
             return (
-                <div key={i} className="content">
-                    <p>{title}</p>
-                    <img src={img}></img>
+                <div>
+                    <div onClick={() => {
+                        setShowModal(true)
+                        setFlickKey(keyVal)
+                    }} key={keyVal} className="content">
+                        {index < 10 ? <h3>{i + 1}</h3> : <></>}
+                        {/* <p>{title}</p> */}
+                        <img src={img} />
+                    </div>
+                    {showModal && flickKey === keyVal && (
+                        <Modal2 onClose={() => setShowModal(false)}>
+                            <Info title={title} setShowModal={setShowModal} />
+                        </Modal2>
+                    )}
                 </div>
             )
         })
@@ -115,7 +113,7 @@ export default function SliderComponent({ allCategories }) {
 
     return (
         <div className='slider-container'>
-            {topTen()}
+            {/* {topTen()} */}
             {flicks}
         </div>
     );

@@ -24,7 +24,7 @@ function Search() {
       onBlur={() => setIsFocused(false)}
       hover={showSearchInput}
     >
-      <SearchInput placeholder="Titles, people, genres" ref={targetRef} showSearchInput={showSearchInput} />
+      <SearchInput placeholder="Titles, genres" ref={targetRef} showSearchInput={showSearchInput} />
       {showSearchInput ? <IconRightArrow /> : <IconMagnifyingGlass />}
     </Container>
   );
