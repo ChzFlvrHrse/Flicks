@@ -12,7 +12,6 @@ import "./index.css"
 export default function SliderComponent({ allCategories }) {
     const [showModal, setShowModal] = useState(false);
     const [flickKey, setFlickKey] = useState();
-    const [animKey, setAnimeKey] = useState();
 
     var settings = {
         // className: "center",
@@ -27,29 +26,16 @@ export default function SliderComponent({ allCategories }) {
         prevArrow: <SamplePrevArrow />
     };
 
-    let topSettings = {
-        // className: "center",
-        // centerMode: true,
-        // centerPadding: "70px",
-        infinite: true,
-        slidesToShow: 6,
-        slidesToScroll: 5,
-        speed: 500,
-        dots: true,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />
-    };
-
     let topTen = () => {
         let count = 0;
-        let topTenObj = {flicks: '', id: 0, name: 'Top 10 Movies in the U.S. Today'};
+        let topTenObj = {flicks: '', id: 0, name: 'Top 15 Movies in the U.S. Today'};
         let topTenArr = [];
         let randCatIndex;
         let randCat;
         let randFlickIndex;
         let randFlick;
 
-        while (count < 10) {
+        while (count < 15) {
             randCatIndex = Math.floor(Math.random() * (allCategories.length - 1))
             randCat = allCategories[randCatIndex];
             randFlickIndex = Math.floor(Math.random() * (randCat?.flicks.length - 1));
@@ -71,9 +57,8 @@ export default function SliderComponent({ allCategories }) {
 
         let { flicks, name } = category
         let maxFlicks = flicks.slice(0, 15)
-        console.log(maxFlicks)
 
-        if (maxFlicks.length < 10) return
+        if (maxFlicks.length < 14) return
 
         let showComponent = maxFlicks.map((flick, i) => {
             let { img, title } = flick;
@@ -113,7 +98,6 @@ export default function SliderComponent({ allCategories }) {
 
     return (
         <div className='slider-container'>
-            {/* {topTen()} */}
             {flicks}
         </div>
     );

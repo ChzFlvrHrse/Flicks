@@ -19,6 +19,7 @@ export default function Home() {
     }, [dispatch])
 
     const categories = useSelector(state => Object.values(state.category))
+    console.log(categories);
 
     return (
         <div className='home-container'>
