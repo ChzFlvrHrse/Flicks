@@ -1,3 +1,4 @@
+import React from "react";
 const IconArrorRight = (props) => (
     <svg
       aria-hidden="true"

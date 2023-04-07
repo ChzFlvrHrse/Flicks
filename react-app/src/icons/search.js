@@ -1,3 +1,5 @@
+import React from "react";
+
 const IconSearch = (props) => (
     <svg
       aria-hidden="true"
