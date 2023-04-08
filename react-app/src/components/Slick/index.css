@@ -7,12 +7,20 @@
     position: relative;
     height: 225px;
     background: #777;
-    color: white
+    color: white;
+    width: fit-content;
 }
 
 .content:hover {
     transform: scale(1.1);
-    transition: all .5s ease-out;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+}
+
+.content-img {
+    object-fit: cover;
+    width: fit-content;
+    height: fit-content
 }
 
 .cat-title {

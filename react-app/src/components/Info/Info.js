@@ -28,7 +28,7 @@ export default function Info({ title, setShowModal }) {
 
     return (
         <div className='info-modal' style={{backgroundImage: `url(${flicks[0]?.img})`}}>
-            <img src={flicks[0]?.img} className='img'/>
+            {/* <img src={flicks[0]?.img} className='img'/> */}
             <div className='info-contents'>
                 <div className='info-title'>
                     {flicks[0]?.title}

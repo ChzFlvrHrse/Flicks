@@ -11,6 +11,7 @@ import "./index.css"
 
 export default function SliderComponent({ allCategories }) {
     const [showModal, setShowModal] = useState(false);
+    const [showTopTen, setTopTen] = useState(false);
     const [topTenKey, setTopTenKey] = useState();
     const [flickKey, setFlickKey] = useState();
 
@@ -27,7 +28,6 @@ export default function SliderComponent({ allCategories }) {
         prevArrow: <SamplePrevArrow />
     };
 
-    let topIndex = 0;
     const topTen = () => {
         let count = 0;
         let topTenArr = [];
@@ -53,14 +53,15 @@ export default function SliderComponent({ allCategories }) {
                     {topTenArr.map((top, i) => (
                         <div>
                             <div onClick={() => {
-                                setShowModal(true)
-                                setTopTenKey(`top${i}`)
-                            }} key={i} className="content">
-                                <h3>{i + 1}</h3>
-                                <img src={top?.img} />
+                                setTopTen(true)
+                                setTopTenKey(i)
+                            }} key={i} className="content"
+                            >
+                                {/* <h3>{i + 1}</h3> */}
+                                <img className="content-img" src={top?.img} />
                             </div>
-                            {showModal && topTenKey === `top${i}` && (
-                                <Modal2 onClose={() => setShowModal(false)}>
+                            {showTopTen && topTenKey === i && (
+                                <Modal2 onClose={() => setTopTen(false)}>
                                     <Info title={top?.title} setShowModal={setShowModal} />
                                 </Modal2>
                             )}
@@ -91,7 +92,7 @@ export default function SliderComponent({ allCategories }) {
                         setShowModal(true)
                         setFlickKey(keyVal)
                     }} key={keyVal} className="content">
-                        <img src={img} />
+                        <img className="content-img" src={img} />
                     </div>
                     {showModal && flickKey === keyVal && (
                         <Modal2 onClose={() => setShowModal(false)}>
