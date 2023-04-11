@@ -57,7 +57,7 @@ export default function SliderComponent({ allCategories }) {
                                 setTopTenKey(i)
                             }} key={i} className="content"
                             >
-                                {/* <h3>{i + 1}</h3> */}
+                                <h3>{i + 1}</h3>
                                 <img className="content-img" src={top?.img} />
                             </div>
                             {showTopTen && topTenKey === i && (
