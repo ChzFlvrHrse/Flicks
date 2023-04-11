@@ -5,6 +5,16 @@ import Info from "../Info/Info";
 import { Modal2 } from "../../context/Modal2";
 import { Modal } from "../../context/Modal"
 import { SampleNextArrow, SamplePrevArrow } from './arrowFunctions';
+import One from '../Images/1.png'
+import Two from '../Images/2.png'
+import Three from '../Images/3.png'
+import Four from '../Images/4.png'
+import Five from '../Images/5.png'
+import Six from '../Images/6.png'
+import Seven from '../Images/7.png'
+import Eight from '../Images/8.png'
+import Nine from '../Images/9.png'
+import Ten from '../Images/10.png'
 import "./slick-theme.css"
 import "./slick.css"
 import "./index.css"
@@ -15,7 +25,9 @@ export default function SliderComponent({ allCategories }) {
     const [topTenKey, setTopTenKey] = useState();
     const [flickKey, setFlickKey] = useState();
 
-    var settings = {
+    let numbers = [One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten]
+
+    let settings = {
         // className: "center",
         // centerMode: true,
         // centerPadding: "70px",
@@ -37,7 +49,7 @@ export default function SliderComponent({ allCategories }) {
         let randFlick;
 
         while (count < 10) {
-            randCatIndex = Math.floor(Math.random() * (allCategories.length - 1))
+            randCatIndex = Math.floor(Math.random() * (allCategories.length - 1));
             randCat = allCategories[randCatIndex];
             randFlickIndex = Math.floor(Math.random() * (randCat?.flicks.length - 1));
             randFlick = randCat?.flicks[randFlickIndex];
@@ -57,7 +69,7 @@ export default function SliderComponent({ allCategories }) {
                                 setTopTenKey(i)
                             }} key={i} className="content"
                             >
-                                <h3>{i + 1}</h3>
+                                <img className="num-img" src={numbers[i]}/>
                                 <img className="content-img" src={top?.img} />
                             </div>
                             {showTopTen && topTenKey === i && (

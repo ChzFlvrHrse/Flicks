@@ -4,9 +4,9 @@
 }
 
 .content {
+    display: flex;
     position: relative;
     height: 225px;
-    background: #777;
     color: white;
     width: fit-content;
 }
@@ -17,10 +17,17 @@
     cursor: pointer;
 }
 
+.num-img {
+    height: 18rem;
+    z-index: -1;
+    margin-right: -24%;
+    margin-top: -1rem;
+}
+
 .content-img {
     object-fit: cover;
     width: fit-content;
-    height: fit-content
+    height: fit-content;
 }
 
 .cat-title {
