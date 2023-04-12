@@ -9,6 +9,7 @@ import "./Nav.css"
 
 export default function Nav() {
     const [scrollTop, setScrollTop] = useState(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const handleScroll = event => {
@@ -29,19 +30,19 @@ export default function Nav() {
                 <NavLink className="home" to='/' exact='true'>
                     <img src={flicks} alt="Flicks" className='logo' />
                 </NavLink>
-                <NavLink className='links'>
+                <NavLink className='links' to='/'>
                     Home
                 </NavLink>
-                <NavLink className='links'>
+                <NavLink className='links' to='/tv'>
                     TV Shows
                 </NavLink>
-                <NavLink className='links'>
+                <NavLink className='links' to='/movies'>
                     Movies
                 </NavLink>
-                <NavLink className='links'>
+                <NavLink className='links' to='/latest'>
                     New & Popular
                 </NavLink>
-                <NavLink className='links'>
+                <NavLink className='links' to='list'>
                     My List
                 </NavLink>
             </div>

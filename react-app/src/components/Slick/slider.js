@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import Info from "../Info/Info";
+import { getAllMoviesThunk, getAllShowsThunk } from '../../store/flick'
 import { Modal2 } from "../../context/Modal2";
 import { Modal } from "../../context/Modal"
 import { SampleNextArrow, SamplePrevArrow } from './arrowFunctions';
@@ -19,13 +20,28 @@ import "./slick-theme.css"
 import "./slick.css"
 import "./index.css"
 
-export default function SliderComponent({ allCategories }) {
+export default function SliderComponent({ allCategories, vtype }) {
     const [showModal, setShowModal] = useState(false);
     const [showTopTen, setTopTen] = useState(false);
     const [topTenKey, setTopTenKey] = useState();
     const [flickKey, setFlickKey] = useState();
 
-    let numbers = [One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten]
+    const dispatch = useDispatch();
+
+    let numbers = [One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten];
+
+    useEffect(() => {
+        dispatch(getAllMoviesThunk());
+    }, [dispatch])
+
+    // useEffect(() => {
+    //     dispatch(getAllShowsThunk());
+    // }, [dispatch])
+
+    const movies = useSelector(state => Object.values(state.flick))
+    console.log(movies)
+    // const tv = useSelector(state => Object.values(state.flick))
+
 
     let settings = {
         // className: "center",
@@ -40,7 +56,7 @@ export default function SliderComponent({ allCategories }) {
         prevArrow: <SamplePrevArrow />
     };
 
-    const topTen = () => {
+    const topTenHome = () => {
         let count = 0;
         let topTenArr = [];
         let randCatIndex;
@@ -84,7 +100,85 @@ export default function SliderComponent({ allCategories }) {
         )
     }
 
+    const topTenMovies = () => {
+        let count = 0;
+        let topTenMovies = [];
+        let randIndex;
+        let randFlick;
 
+        while (count < 10) {
+            randIndex = Math.floor(Math.random() * (movies?.length - 1));
+            randFlick = movies[randIndex];
+
+            topTenMovies.push(randFlick);
+            count++;
+        }
+
+        return (
+            <div>
+                <h2 className="cat-title">Top 10 Movies in the U.S. Today</h2>
+                <Slider {...settings}>
+                    {topTenMovies.map((top, i) => (
+                        <div>
+                            <div onClick={() => {
+                                setTopTen(true)
+                                setTopTenKey(i)
+                            }} key={i} className="content"
+                            >
+                                <img className="num-img" src={numbers[i]}/>
+                                <img className="content-img" src={top?.img} />
+                            </div>
+                            {showTopTen && topTenKey === i && (
+                                <Modal2 onClose={() => setTopTen(false)}>
+                                    <Info title={top?.title} setShowModal={setShowModal} />
+                                </Modal2>
+                            )}
+                        </div>
+                    ))}
+                </Slider>
+            </div>
+        )
+    }
+
+    // const topTenShows = () => {
+    //     let count = 0;
+    //     let topTenShows = [];
+    //     let randIndex;
+    //     let randShow;
+
+    //     while (count < 10) {
+    //         randIndex = Math.floor(Math.random() * (tv?.length - 1));
+    //         randShow = tv[randIndex];
+
+    //         topTenShows.push(randShow);
+    //         count++;
+    //     }
+
+    //     return (
+    //         <div>
+    //             <h2 className="cat-title">Top 10 TV Shows in the U.S. Today</h2>
+    //             <Slider {...settings}>
+    //                 {topTenShows.map((top, i) => (
+    //                     <div>
+    //                         <div onClick={() => {
+    //                             setTopTen(true)
+    //                             setTopTenKey(i)
+    //                         }} key={i} className="content"
+    //                         >
+    //                             <img className="num-img" src={numbers[i]}/>
+    //                             <img className="content-img" src={top?.img} />
+    //                         </div>
+    //                         {showTopTen && topTenKey === i && (
+    //                             <Modal2 onClose={() => setTopTen(false)}>
+    //                                 <Info title={top?.title} setShowModal={setShowModal} />
+    //                             </Modal2>
+    //                         )}
+    //                     </div>
+    //                 ))}
+    //             </Slider>
+    //         </div>
+    //     )
+    // }
 
     let index = 0;
     const flicks = allCategories.map((category) => {
@@ -130,7 +224,7 @@ export default function SliderComponent({ allCategories }) {
 
     return (
         <div className='slider-container'>
-            {topTen()}
+            {topTenMovies()}
             {flicks}
         </div>
     );

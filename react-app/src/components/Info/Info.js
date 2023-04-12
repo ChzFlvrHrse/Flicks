@@ -28,7 +28,6 @@ export default function Info({ title, setShowModal }) {
 
     return (
         <div className='info-modal' style={{backgroundImage: `url(${flicks[0]?.img})`}}>
-            {/* <img src={flicks[0]?.img} className='img'/> */}
             <div className='info-contents'>
                 <div className='info-title'>
                     {flicks[0]?.title}
@@ -39,7 +38,7 @@ export default function Info({ title, setShowModal }) {
                             {flicks[0]?.year}
                         </div>
                         <div className='detail'>
-                            {flicks[0]?.runtime === 0 ? secondsToHm(flicks[0]?.runtime) : <></>}
+                            {flicks[0]?.runtime !== 0 ? secondsToHm(flicks[0]?.runtime) : flicks[0]?.vtype}
                         </div>
                         <div className='detail'>
                             <HdTwoToneIcon />

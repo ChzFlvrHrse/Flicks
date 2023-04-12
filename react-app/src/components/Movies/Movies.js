@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllFlicksThunk, getOneFlickThunk, searchFlickThunk } from '../../store/flick'
-import { getAllCategoriesThunk, getOneCategoryThunk } from '../../store/category';
+import { getAllCategoriesThunk } from '../../store/category';
 import SliderComponent from '../Slick/slider';
 import Info from '../Info/Info';
-import DKT from '../Images/DKT.png'
+import DKT from '../Images/DKT.png';
 import { Modal } from '../../context/Modal';
-import './Home.css';
+import './Movies.css';
 
-export default function Home() {
-    const [showModalBanner, setShowModalBanner] = useState(false)
+export default function Movies() {
+    const [showModalBanner, setShowModalBanner] = useState(false);
+    const [genre, setGenre] = useState('');
 
     const dispatch = useDispatch();
 

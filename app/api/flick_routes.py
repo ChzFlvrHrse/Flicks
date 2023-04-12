@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
 from .auth_routes import validation_errors_to_error_messages
 from app.models import Flick
+from app.models import Category
 
 flick_routes = Blueprint('flick', __name__)
 
@@ -27,3 +28,15 @@ def search_flick(title):
     if len(flick_search) == 0:
         return {'searched': 'Title does not exist'}
     return {'searched': [flick.to_dict() for flick in flick_search]}
+
+@flick_routes.route("/movies")
+# @login_required
+def get_movies():
+    movies = Flick.query.filter(Flick.vtype == 'movie').all()
+    return {"movie": [movie.to_dict() for movie in movies]}
+
+@flick_routes.route("/tv")
+# @login_required
+def get_shows():
+    tv = Flick.query.filter(Flick.vtype == 'series').all()
+    return {"tv": [shows.to_dict() for shows in tv]}
